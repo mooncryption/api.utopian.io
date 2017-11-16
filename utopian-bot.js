@@ -376,7 +376,9 @@ conn.once('open', function ()
                                         'muxxybot'
                                       ];
 
-
+                                      // minimum and maximum Vote
+                                      const minVote = 1;
+                                      const maxVote = 60;
                                       const reputation = steem.formatter.reputation(account.reputation);
 
                                       const categoryStats = categories[post.json_metadata.type];
@@ -640,8 +642,8 @@ conn.once('open', function ()
                                       }
 
                                       vote = Math.round(vote);
-                                      if(vote <= 0) vote = 1;
-                                      if(vote > 100) vote = 60;
+                                      if(vote < minVote) vote = minVote;
+                                      if(vote > maxVote) vote = maxVote;
 
 
 
